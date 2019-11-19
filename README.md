@@ -8,6 +8,34 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/containerd/containerd)](https://goreportcard.com/report/github.com/containerd/containerd)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/1271/badge)](https://bestpractices.coreinfrastructure.org/projects/1271)
 
+--------
+
+# Experimental rust client...
+
+To play with this....
+
+*   Install rust toolchain via https://rustup.rs/
+*   Build
+
+        $ cargo build
+
+*   Since Tonic, a rust implementation of gRPC, is missing Unix socket support (
+    https://github.com/hyperium/tonic/issues/136 ), you'll need to expose the
+    containerd socket over localhost TCP port 9000 to run the examples. You can
+    do this with something like,
+
+        $ sudo socat -d -d TCP-LISTEN:9000,reuseaddr,fork UNIX-CLIENT:/run/containerd/containerd.sock
+
+*   Run examples, i.e.
+
+        $ cargo run --example containers
+
+*   Check out generated api docs
+
+        $ cargo doc --open
+
+--------
+
 containerd is an industry-standard container runtime with an emphasis on simplicity, robustness and portability. It is available as a daemon for Linux and Windows, which can manage the complete container lifecycle of its host system: image transfer and storage, container execution and supervision, low-level storage and network attachments, etc.
 
 containerd is designed to be embedded into a larger system, rather than being used directly by developers or end-users.

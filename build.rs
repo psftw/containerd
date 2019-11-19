@@ -1,0 +1,34 @@
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    tonic_build::configure()
+        .build_server(false)
+        .compile(
+            &["api/services/containers/v1/containers.proto",
+              "api/services/content/v1/content.proto",
+              "api/services/diff/v1/diff.proto",
+              "api/services/events/v1/events.proto",
+              "api/services/images/v1/images.proto",
+              "api/services/introspection/v1/introspection.proto",
+              "api/services/leases/v1/leases.proto",
+              "api/services/namespaces/v1/namespace.proto",
+              "api/services/snapshots/v1/snapshots.proto",
+              "api/services/tasks/v1/tasks.proto",
+              "api/services/ttrpc/events/v1/events-renamed.proto",
+              "api/services/version/v1/version.proto"],
+            &["api/services/containers/v1",
+              "api/services/content/v1",
+              "api/services/diff/v1",
+              "api/services/events/v1",
+              "api/services/images/v1",
+              "api/services/introspection/v1",
+              "api/services/leases/v1",
+              "api/services/namespaces/v1",
+              "api/services/snapshots/v1",
+              "api/services/tasks/v1",
+              "api/services/ttrpc/events/v1",
+              "api/services/version/v1",
+              "vendor",
+              "vendor/github.com/gogo/protobuf",
+              "vendor/github.com/gogo/googleapis"],
+        )?;
+    Ok(())
+}
